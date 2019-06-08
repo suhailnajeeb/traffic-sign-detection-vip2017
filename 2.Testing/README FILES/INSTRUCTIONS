@@ -1,0 +1,84 @@
+
+# Generating the files in detections.zip
+-----------------------------------------
+
+To generate the detection files, you need to run the main.py file and pass the directory of the videos with the flag -p
+
+	$ python main.py -p '/media/drive/vip/videos/'
+
+USAGE:
+----------------------------------------------------------------------------------------------------------------------------------
+		
+$ python main.py -p "/home/media/driveA/videos/" 		(this will generate detection files for all test videos)
+			
+$ python main.py -p "/home/media/driveA/videos/" --part 1	(this will generate detection files for first 6 real test videos)
+			
+$ python main.py -f --fp "/home/media/driveA/FRAMES/"		(this will genereate detection files using extracted frames)
+
+
+COMMAND LINE PARAMETERS AND FLAGS:
+-----------------------------------------------------------------------------------------------------------------------------------
+
+1. 	-p <path to video folder>		: include the folder to where the dataset videos are kept (if using frames from video directly)
+
+									e.g $ main.py -p "/home/media/driveA/Videos/"
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+2a.	--fp <path to frames folder>		: include the folder to where the extracted frames from videos are kept (if using extracted frames)
+2b.	-f 					: use extracted frames flag, must include if running model from extracted frames
+
+									e.g $ main.py --fp "/home/media/driveA/Frames/" -f
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+3.	--part <integer>			: for generating results, we split the test set into 4 different parts and ran on seperate PCs
+						  if not included, system will process all the videos in test set without splitting
+
+									e.g $ main.py --part 3 		(for part 3)
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+4.	-r					: flag, will prevent generation of detection files 
+
+									e.g $ main.py -r 		
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+5.	--vb					: flag for verbose output; will show raw output from tracker and other diagnostics
+
+									e.g $ main.py --vb
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+6.	-v					: flag for visualization; will show preview of each frame along with detections
+
+									e.g $ main.py -v
+
+ -----------------------------------------------------------------------------------------------------------------------------------
+
+76.	-n <video name(s)>			: if wanting to test individual videos, use this followed by the name(s) of the videos seperated by ','
+
+									e.g $ main.py -n 01_01_00_00_00, 01_02_00_00_00
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+8.	--scaleBoxes <float>			: factor to scale detected boxes before passing to classifier, default = 1.0 (no scaling)
+
+									e.g $ main.py --scaleBoxes 0.4 		(will shrink boxes to 40% of detected size)
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+9. 	--lp <path to ground truth labels>	: include the path to ground truth labels (for visualization); default value set to current directory
+
+									e.g $ main.py --lp "./labels/"
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+10. 	--showROI				: flag, if included will show ROI regions in seperate 
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+11. 	--continue				: flag, if included will continue result generation from where code stopped last; used if 
+						  code stops prematurely for some reason (power outtage / some sort of unexpected error) 
+-----------------------------------------------------------------------------------------------------------------------------------
